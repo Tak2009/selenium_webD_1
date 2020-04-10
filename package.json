@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test1": "mocha test/SeleniumChromeTest.js --timeout 0",
+    "firstName": "mocha test/firstName.js --timeout 0",
+    "firstName-brk": "mocha --inspect-brk test/firstName.js --timeout 0"
   },
   "author": "",
   "license": "ISC",
