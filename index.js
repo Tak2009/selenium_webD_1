@@ -39,5 +39,6 @@ let result4 = document.evaluate(
     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
     null
 );
-let elem = result4.snapshotItem(0);
-console.log(elem)
+
+const div = document.querySelector("#main")
+console.log(div.innerText)
