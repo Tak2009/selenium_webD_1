@@ -7,7 +7,7 @@ const should = require('chai').should();
 
 let driver;
 
-describe("Email field check", () => {
+describe("Phone number field check", () => {
   before(() => {
     driver = new Builder().forBrowser("chrome").build();
   });
@@ -21,17 +21,18 @@ describe("Email field check", () => {
     // 画面サイズ
     await driver.manage().window().setRect(1440, 830)
     // 
-    assert(await driver.findElement(By.css(".atm-input-layout:nth-child(6) .label")).getText() == "メールアドレス")
+    assert(await driver.findElement(By.css(".atm-input-layout:nth-child(4) .label")).getText() == "お電話番号")
   });
   it("blank case. error message check", async () => {
-    await driver.findElement(By.id("email")).click()
+    await driver.findElement(By.id("phone")).click()
     await driver.findElement(By.id("lastname")).click()
+    await driver.findElement(By.id("firstname")).click()
     // check the error message
-    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(6) .error-messages"),10000)).getText() == "お客様のメールアドレスをご教示下さい。ご教示頂いたメールアドレスは、弊社サービスまたはお客様のお口座に関する重要な情報をお送りする際に使用させて頂きます。スパムの心配はございません。")
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(4) .error-messages"),10000)).getText() == "お客様のお電話番号をご教示下さい。ご教示頂いたお電話番号は、お客様のお口座に問題がございます場合のみ使用させて頂きます。")
   });
   it("blank case. validation check = field is red ticked", async () => {
     //親の親要素のクラス属性の属性値を確認
-    const element = await driver.findElement(By.xpath("//input[@id=\'email\']/../..")).getAttribute("class")
+    const element = await driver.findElement(By.xpath("//input[@id=\'phone\']/../..")).getAttribute("class")
     //検証
     assert.equal(element, "atm-input-container invalid");
   });
