@@ -8,8 +8,8 @@ it("pass case. no error message2", async () => {
     //検証：Error Messageがないかどうか確認
     const elements = await driver.findElements(By.xpath("//input[@id=\'lastname\']/../.."))
     assert(elements.length)
-    const element = elements.findElement(By.className("error-messages"))
-    const errorMessage = element.getText()
+    const element = await elements.findElement(By.className("error-messages"))
+    const errorMessage = await element.getText()
     assert.equal(errorMessage, "");
   });
     // //存在するかどうか確認

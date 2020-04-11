@@ -7,6 +7,8 @@
     "familyName": "mocha test/familyName.js --timeout 0",
     "familyName-brk": "mocha --inspect-brk test/familyName.js --timeout 0",
     "firstName": "mocha test/firstName.js --timeout 0",
+    "email": "mocha test/email.js --timeout 0",
+    "email-brk": "mocha --inspect-brk test/email.js --timeout 0",
     "test": "mocha test/test.js --timeout 0"
   },
   "author": "",

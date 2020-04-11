@@ -23,13 +23,13 @@ describe("Family name field check", () => {
     // 
     assert(await driver.findElement(By.css(".atm-input-layout:nth-child(3) .label")).getText() == "性（Family name）例：Yamada")
   });
-  it("blank case", async () => {
+  it("blank case. error message check", async () => {
     // click in the field to activate. id=lastname but the label text says first name...　tricky!
     await driver.findElement(By.id("lastname")).click()
     // id=firstname is assigned to family name node.. tricky!!
     await driver.findElement(By.id("firstname")).click()
     // check the error message
-    assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "お客様のご苗字をご教示下さい。")
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "お客様のご苗字をご教示下さい。")
   });
   it("blank case. validation check = field is red ticked", async () => {
     //親の親要素のクラス属性の属性値を確認
@@ -37,55 +37,47 @@ describe("Family name field check", () => {
     //検証
     assert.equal(element, "atm-input-container invalid");
   });
-  it("number case", async () => {
+  it("number case. error message check", async () => {
     await driver.findElement(By.id("lastname")).sendKeys("take777")
     await driver.findElement(By.id("firstname")).click()
     await driver.findElement(By.css(".atm-error-message-container")).click()
-    assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
   });
   it("number case. validation check = field is red ticked", async () => {
-    //親の親要素のクラス属性の属性値を確認
     const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-    //検証
     assert.equal(element, "atm-input-container invalid");
   });
-  it("special charactor input case", async () => {
+  it("special charactor input case. error message check", async () => {
     await driver.findElement(By.id("lastname")).clear()
     await driver.findElement(By.id("lastname")).sendKeys("take^%$£")
     await driver.findElement(By.id("firstname")).click()
     await driver.findElement(By.css(".atm-error-message-container")).click()
-    assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
   });
   it("special charactor case. validation check = field is red ticked", async () => {
-    //親の親要素のクラス属性の属性値を確認
     const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-    //検証
     assert.equal(element, "atm-input-container invalid");
   });
-  it("only space input case", async () => {
+  it("only space input case. error message check", async () => {
     await driver.findElement(By.id("lastname")).clear()
     await driver.findElement(By.id("lastname")).sendKeys(" ")
     await driver.findElement(By.id("firstname")).click()
     await driver.findElement(By.css(".atm-error-message-container")).click()
-    assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "お客様のご苗字をご教示下さい。")
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "お客様のご苗字をご教示下さい。")
   });
   it("only space case. validation check = field is red ticked", async () => {
-    //親の親要素のクラス属性の属性値を確認
     const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-    //検証
     assert.equal(element, "atm-input-container invalid");
   })
-  it("only hyphen input case", async () => {
+  it("only hyphen input case. error message check", async () => {
     await driver.findElement(By.id("lastname")).clear()
     await driver.findElement(By.id("lastname")).sendKeys("-")
     await driver.findElement(By.id("firstname")).click()
     await driver.findElement(By.css(".atm-error-message-container")).click()
-    assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "お客様のご苗字をご教示下さい。")
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "お客様のご苗字をご教示下さい。")
   });
   it("only hyphen case. validation check = field is red ticked", async () => {
-    //親の親要素のクラス属性の属性値を確認
     const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-    //検証
     assert.equal(element, "atm-input-container invalid");
   })
   it("pass case. no error message", async () => {
@@ -95,13 +87,11 @@ describe("Family name field check", () => {
     //lastname入力エリアからでる。これをすることでこの結論からDOMアクションをトリガーさせる
     await driver.findElement(By.id("firstname")).click()
     //検証：Error Messageがないかどうか確認
-    const errorMessage = await driver.findElement(By.css(".error-messages")).getText()
+    const errorMessage = await driver.findElement(By.css(".atm-input-layout:nth-child(3) .error-messages")).getText()
     assert.equal(errorMessage, "");
   });
   it("pass case. validation check = field is green ticked", async () => {
-    //親の親要素のクラス属性の属性値を確認
     const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-    //検証
     assert.equal(element, "atm-input-container valid");
   });
 });
