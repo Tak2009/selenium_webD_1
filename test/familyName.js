@@ -40,7 +40,6 @@ describe("Family name field check", () => {
   it("number case. error message check", async () => {
     await driver.findElement(By.id("lastname")).sendKeys("take777")
     await driver.findElement(By.id("firstname")).click()
-    await driver.findElement(By.css(".atm-error-message-container")).click()
     assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
   });
   it("number case. validation check = field is red ticked", async () => {
@@ -51,7 +50,6 @@ describe("Family name field check", () => {
     await driver.findElement(By.id("lastname")).clear()
     await driver.findElement(By.id("lastname")).sendKeys("take^%$£")
     await driver.findElement(By.id("firstname")).click()
-    await driver.findElement(By.css(".atm-error-message-container")).click()
     assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
   });
   it("special charactor case. validation check = field is red ticked", async () => {
@@ -62,7 +60,6 @@ describe("Family name field check", () => {
     await driver.findElement(By.id("lastname")).clear()
     await driver.findElement(By.id("lastname")).sendKeys(" ")
     await driver.findElement(By.id("firstname")).click()
-    await driver.findElement(By.css(".atm-error-message-container")).click()
     assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "お客様のご苗字をご教示下さい。")
   });
   it("only space case. validation check = field is red ticked", async () => {
@@ -73,7 +70,6 @@ describe("Family name field check", () => {
     await driver.findElement(By.id("lastname")).clear()
     await driver.findElement(By.id("lastname")).sendKeys("-")
     await driver.findElement(By.id("firstname")).click()
-    await driver.findElement(By.css(".atm-error-message-container")).click()
     assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(3) .error-messages"),10000)).getText() == "お客様のご苗字をご教示下さい。")
   });
   it("only hyphen case. validation check = field is red ticked", async () => {

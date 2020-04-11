@@ -26,7 +26,6 @@ describe("Phone number field check", () => {
   it("blank case. error message check", async () => {
     await driver.findElement(By.id("phone")).click()
     await driver.findElement(By.id("lastname")).click()
-    await driver.findElement(By.id("firstname")).click()
     // check the error message
     assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(4) .error-messages"),10000)).getText() == "お客様のお電話番号をご教示下さい。ご教示頂いたお電話番号は、お客様のお口座に問題がございます場合のみ使用させて頂きます。")
   });
@@ -36,62 +35,60 @@ describe("Phone number field check", () => {
     //検証
     assert.equal(element, "atm-input-container invalid");
   });
-  // it("number case", async () => {
-  //   await driver.findElement(By.id("lastname")).sendKeys("take777")
-  //   await driver.findElement(By.id("firstname")).click()
-  //   await driver.findElement(By.css(".atm-error-message-container")).click()
-  //   assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
-  // });
-  // it("number case. validation check = field is red ticked", async () => {
-  //   const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-  //   assert.equal(element, "atm-input-container invalid");
-  // });
-  // it("special charactor input case", async () => {
-  //   await driver.findElement(By.id("lastname")).clear()
-  //   await driver.findElement(By.id("lastname")).sendKeys("take^%$£")
-  //   await driver.findElement(By.id("firstname")).click()
-  //   await driver.findElement(By.css(".atm-error-message-container")).click()
-  //   assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "ご苗字が正しくないフォーマットで記入されています。半角の英字でご記入下さい。")
-  // });
-  // it("special charactor case. validation check = field is red ticked", async () => {
-  //   const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-  //   assert.equal(element, "atm-input-container invalid");
-  // });
-  // it("only space input case", async () => {
-  //   await driver.findElement(By.id("lastname")).clear()
-  //   await driver.findElement(By.id("lastname")).sendKeys(" ")
-  //   await driver.findElement(By.id("firstname")).click()
-  //   await driver.findElement(By.css(".atm-error-message-container")).click()
-  //   assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "お客様のご苗字をご教示下さい。")
-  // });
-  // it("only space case. validation check = field is red ticked", async () => {
-  //   const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-  //   assert.equal(element, "atm-input-container invalid");
-  // })
-  // it("only hyphen input case", async () => {
-  //   await driver.findElement(By.id("lastname")).clear()
-  //   await driver.findElement(By.id("lastname")).sendKeys("-")
-  //   await driver.findElement(By.id("firstname")).click()
-  //   await driver.findElement(By.css(".atm-error-message-container")).click()
-  //   assert(await driver.wait(until.elementLocated(By.css(".atm-error-message-container"),10000)).getText() == "お客様のご苗字をご教示下さい。")
-  // });
-  // it("only hyphen case. validation check = field is red ticked", async () => {
-  //   const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-  //   assert.equal(element, "atm-input-container invalid");
-  // })
-  // it("pass case. no error message", async () => {
-  //   await driver.findElement(By.id("lastname")).clear()
-  //   //テストをパスするインプットを入力エリアに渡す
-  //   await driver.findElement(By.id("lastname")).sendKeys("kimotoKIMOTO")
-  //   //lastname入力エリアからでる。これをすることでこの結論からDOMアクションをトリガーさせる
-  //   await driver.findElement(By.id("firstname")).click()
-  //   //検証：Error Messageがないかどうか確認
-  //   const errorMessage = await driver.findElement(By.css(".error-messages")).getText()
-  //   assert.equal(errorMessage, "");
-  // });
-  // it("pass case. validation check = field is green ticked", async () => {
-  //   const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")
-  //   assert.equal(element, "atm-input-container valid");
-  // });
+  it("letter case. error message check", async () => {
+    await driver.findElement(By.id("phone")).sendKeys("7878takeああくKiaｱ")
+    await driver.findElement(By.id("lastname")).click()
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(4) .error-messages"),10000)).getText() == "お電話番号が正しくないフォーマットで記入されています。半角の数字でご記入下さい。")
+  });
+  it("letter case. validation check = field is red ticked", async () => {
+    //親の親要素のクラス属性の属性値を確認
+    const element = await driver.findElement(By.xpath("//input[@id=\'phone\']/../..")).getAttribute("class")
+    //検証
+    assert.equal(element, "atm-input-container invalid");
+  });
+  it("special charactor input case. error message check", async () => {
+    await driver.findElement(By.id("phone")).clear()
+    await driver.findElement(By.id("phone")).sendKeys(":<>777^%$£")
+    await driver.findElement(By.id("lastname")).click()
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(4) .error-messages"),10000)).getText() == "お電話番号が正しくないフォーマットで記入されています。半角の数字でご記入下さい。")
+  });
+  it("special charactor case. validation check = field is red ticked", async () => {
+    const element = await driver.findElement(By.xpath("//input[@id=\'phone\']/../..")).getAttribute("class")
+    assert.equal(element, "atm-input-container invalid");
+  });
+  it("only space input case. error message check", async () => {
+    await driver.findElement(By.id("phone")).clear()
+    await driver.findElement(By.id("phone")).sendKeys(" ")
+    await driver.findElement(By.id("lastname")).click()
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(4) .error-messages"),10000)).getText() == "お客様のお電話番号をご教示下さい。ご教示頂いたお電話番号は、お客様のお口座に問題がございます場合のみ使用させて頂きます。")
+  });
+  it("only space case. validation check = field is red ticked", async () => {
+    const element = await driver.findElement(By.xpath("//input[@id=\'phone\']/../..")).getAttribute("class")
+    assert.equal(element, "atm-input-container invalid");
+  })
+  it("only hyphen input case. error message check", async () => {
+    await driver.findElement(By.id("phone")).clear()
+    await driver.findElement(By.id("phone")).sendKeys("-")
+    await driver.findElement(By.id("lastname")).click()
+    assert(await driver.wait(until.elementLocated(By.css(".atm-input-layout:nth-child(4) .error-messages"),10000)).getText() == "お電話番号が正しくないフォーマットで記入されています。半角の数字でご記入下さい。")
+  });
+  it("only hyphen case. validation check = field is red ticked", async () => {
+    const element = await driver.findElement(By.xpath("//input[@id=\'phone\']/../..")).getAttribute("class")
+    assert.equal(element, "atm-input-container invalid");
+  })
+  it("pass case. no error message", async () => {
+    await driver.findElement(By.id("phone")).clear()
+    //テストをパスするインプットを入力エリアに渡す
+    await driver.findElement(By.id("phone")).sendKeys("08655365293")
+    //lastname入力エリアからでる。これをすることでこの結論からDOMアクションをトリガーさせる
+    await driver.findElement(By.id("lastname")).click()
+    //検証：Error Messageがないかどうか確認
+    const errorMessage = await driver.findElement(By.css(".atm-input-layout:nth-child(4) .error-messages")).getText()
+    assert.equal(errorMessage, "");
+  });
+  it("pass case. validation check = field is green ticked", async () => {
+    const element = await driver.findElement(By.xpath("//input[@id=\'phone\']/../..")).getAttribute("class")
+    assert.equal(element, "atm-input-container valid");
+  });
 });
 
