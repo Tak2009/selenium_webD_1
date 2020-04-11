@@ -21,7 +21,7 @@ describe("Family name field check", () => {
     // 画面サイズ
     await driver.manage().window().setRect(1440, 830)
     // 
-    assert(await driver.findElement(By.css(".atm-input-layout:nth-child(3) .label")).getText() == "性（Family name）例：Yamada")
+    assert(await driver.findElement(By.css(".atm-input-layout:nth-child(3) .label")).getText() == "姓（Family name）例：Yamada")
   });
   it("blank case. error message check", async () => {
     // click in the field to activate. id=lastname but the label text says first name...　tricky!
@@ -86,7 +86,7 @@ describe("Family name field check", () => {
     const errorMessage = await driver.findElement(By.css(".atm-input-layout:nth-child(3) .error-messages")).getText()
     assert.equal(errorMessage, "");
     // const elements = await driver.findElements(By.css(".atm-input-layout:nth-child(3) .error-messages"))
-    // assert(elements.length, 0)
+    // assert.equal(elements.length, 0)
   });
   it("pass case. validation check = field is green ticked", async () => {
     const element = await driver.findElement(By.xpath("//input[@id=\'lastname\']/../..")).getAttribute("class")

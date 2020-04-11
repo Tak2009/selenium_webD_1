@@ -86,7 +86,7 @@ describe("First name field check", () => {
     const errorMessage = await driver.findElement(By.css(".atm-input-layout:nth-child(2) .error-messages")).getText()
     assert.equal(errorMessage, "");
     // const elements = await driver.findElements(By.css(".atm-input-layout:nth-child(2) .error-messages"))
-    // assert(elements.length, 0)
+    // assert.equal(elements.length, 0)
   });
   it("pass case. validation check = field is green ticked", async () => {
     const element = await driver.findElement(By.xpath("//input[@id=\'firstname\']/../..")).getAttribute("class")
