@@ -7,7 +7,7 @@ const should = require('chai').should();
 
 let driver;
 
-describe("Platform field check", () => {
+describe("Account Type field check", () => {
   before(() => {
     driver = new Builder().forBrowser("chrome").build();
   });
@@ -19,26 +19,24 @@ describe("Platform field check", () => {
   it("label text check", async () => {
     await driver.get("https://revolgy-forms-case-study-master.staging.axiory.com/jp/registration/demo");
     await driver.manage().window().setRect(1440, 830)
-    assert(await driver.findElement(By.css(".atm-select-box-container:nth-child(7) .label")).getText() == "プラットフォーム")
+    assert(await driver.findElement(By.css(".atm-select-box-container:nth-child(8) .label")).getText() == "最初のお口座のタイプをご選択下さい")
   });
   it("ご選択下さい(selected disabled invalid) selected case. an error message expected ", async () => {
-    const dropdown = await driver.findElement(By.id("platform"))
-    await dropdown.findElement(By.xpath("//*[@id=\'platform\']/option[1]")).click()  //await dropdown.findElement(By.xpath("//option[. = 'MetaTrader4']")).click() for option[2]
+    const dropdown = await driver.findElement(By.id("accountType"))
+    await dropdown.findElement(By.xpath("//*[@id=\'accountType\']/option[1]")).click()  //await dropdown.findElement(By.xpath("//option[. = 'Standard (STP)']")).click() for option[2]
     await driver.findElement(By.css(".button")).click()
-    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(7) .error-messages")).getText()
+    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(8) .error-messages")).getText()
     assert(errorMessage !== "");
-    // const element = await driver.wait(until.elementLocated(By.xpath("//*[@id=\'platform\']/../../../div[7]"),10000)).getAttribute("class") <--This xpath does not work.... why??? stops here with an error saying no match for this path.
-    // assert.equal(element, "atm-select-box-container valid");
   });
   it("pass cases. no error message expected", async () => {
     const pattern = ["option[2]","option[3]"]
     const failResult = []
     const passResult = []
-    const dropdown = await driver.findElement(By.id("platform"))
+    const dropdown = await driver.findElement(By.id("accountType"))
     for (let i = 0; i < pattern.length; i++){
-      await dropdown.findElement(By.xpath(`//*[@id=\'platform\']/${pattern[i]}`)).click() 
+      await dropdown.findElement(By.xpath(`//*[@id=\'accountType\']/${pattern[i]}`)).click() 
       await driver.findElement(By.css(".button")).click()
-      let validFlag = await driver.findElement(By.css(".atm-select-box-container:nth-child(7) .error-messages")).getText()
+      let validFlag = await driver.findElement(By.css(".atm-select-box-container:nth-child(8) .error-messages")).getText()
         // if there is no error message
       if (validFlag == ""){
         // push "pass" to the pass result array

@@ -7,7 +7,7 @@ const should = require('chai').should();
 
 let driver;
 
-describe("Check box check", () => {
+describe("Consent box check", () => {
   before(() => {
     driver = new Builder().forBrowser("chrome").build();
   });

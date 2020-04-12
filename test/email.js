@@ -48,8 +48,8 @@ describe("Email field check", () => {
       let elements = await driver.findElement(By.css(".atm-input-layout:nth-child(6) .error-messages")).getText()
       // if there is an error message pops up
       if (elements != ""){
-        // push "failed" to the result array
-        failResult.push("failed")
+        // push "fail" to the fail result array
+        failResult.push("fail")
       } else {
         passResult.push("pass")
       }
@@ -68,8 +68,8 @@ describe("Email field check", () => {
       let validFlag = await driver.findElement(By.xpath("//input[@id=\'email\']/../..")).getAttribute("class")
       // if the validFlag = invalid
       if (validFlag == "atm-input-container invalid"){
-        // push "failed" to the fail result array as it is supposed to be valid
-        failResult.push("failed")
+        // push "fail" to the fail result array as it is supposed to be valid
+        failResult.push("fail")
       } else {
         passResult.push("pass")
       }
@@ -88,10 +88,10 @@ describe("Email field check", () => {
       await driver.findElement(By.id("email")).sendKeys(pattern[i])
       await driver.findElement(By.id("lastname")).click()
       let elements = await driver.findElement(By.css(".atm-input-layout:nth-child(6) .error-messages")).getText()
-      // if there is an error message pops up
+      // if there is an error message
       if (elements == "メールアドレスが正しくないフォーマットで記入されています。ご確認下さい。"){
-        // push "failed" to the fail result array
-        failResult.push("failed")
+        // push "fail" to the fail result array
+        failResult.push("fail")
       } else {
         passResult.push("pass")
       }
@@ -111,8 +111,8 @@ describe("Email field check", () => {
       let validFlag = await driver.findElement(By.xpath("//input[@id=\'email\']/../..")).getAttribute("class")
       // if the validFlag = invalid
       if (validFlag == "atm-input-container invalid"){
-        // push "failed" to the fail result array as it is supposed to be invalid
-        failResult.push("failed")
+        // push "fail" to the fail result array as it is supposed to be invalid
+        failResult.push("fail")
       } else {
         passResult.push("pass")
       }
@@ -159,7 +159,7 @@ describe("Email field check", () => {
     const element = await driver.findElement(By.xpath("//input[@id=\'email\']/../..")).getAttribute("class")
     assert.equal(element, "atm-input-container invalid");
   })
-  it("pass case. no error message", async () => {
+  it("pass case. no error message expected", async () => {
     await driver.findElement(By.id("email")).clear()
     //テストをパスするインプットを入力エリアに渡す
     await driver.findElement(By.id("email")).sendKeys("tak.1-kim_77@gmail.com")

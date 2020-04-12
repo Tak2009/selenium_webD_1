@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "accountType": "mocha test/accountType.js --timeout 0",
     "email": "mocha test/email.js --timeout 0",
     "email-brk": "mocha --inspect-brk test/email.js --timeout 0",
     "familyName": "mocha test/familyName.js --timeout 0",
