@@ -10,6 +10,8 @@
     "email": "mocha test/email.js --timeout 0",
     "email-brk": "mocha --inspect-brk test/email.js --timeout 0",
     "phone": "mocha test/phone.js --timeout 0",
+    "iAgreeDemo": "mocha test/iAgreeDemo.js --timeout 0",
+    "iAgreeDemo-brk": "mocha --inspect-brk test/iAgreeDemo.js --timeout 0",
     "phone-brk": "mocha --inspect-brk test/phone.js --timeout 0",
     "test": "mocha test/test.js --timeout 0"
   },
