@@ -1,7 +1,8 @@
+# How to install SeleniumWebdriver with JavaScript
 1. npm init
 
 2. npm install -D selenium-webdriver mocha chai chromedriver@80.0.0 
-   * my current Chrome version = Version 80.0.3987.162
+   * check the chrome version
 
 3. change package.json
 
@@ -14,11 +15,7 @@
     * default timeout = 2000ms but change to 0 for the tine being.
 
 
-
-
-
-
-    How to debug Mocha tests running in Node using Chrome DevTools inspector.
+# How to debug Mocha tests running in Node using Chrome DevTools inspector.
 If you are using Mocha test runner, you can easily debug the test execution using Node and Chrome DevTools inspector. I am using Mocha 3.5.3 and Node 8.9.4 in this demo.
 
 1. Break at the start of the Node process
