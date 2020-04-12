@@ -78,7 +78,7 @@ describe("Email field check", () => {
   });
   it("@ cases. the pattern array elements must be rejected", async () => {
     // these should pass and no error message expected 
-    const pattern = ["a@","@gmail.com"]
+    const pattern = ["a@","@gmail.com","a b c@gmail.com","abc.@gmail.com","abc..@gmail.com","abs@&%$#*+.com"]
     const failResult = []
     const passResult = []
     debugger
@@ -89,7 +89,7 @@ describe("Email field check", () => {
       await driver.findElement(By.id("lastname")).click()
       let elements = await driver.findElement(By.css(".atm-input-layout:nth-child(6) .error-messages")).getText()
       // if there is an error message pops up
-      if (elements = "メールアドレスが正しくないフォーマットで記入されています。ご確認下さい。"){
+      if (elements == "メールアドレスが正しくないフォーマットで記入されています。ご確認下さい。"){
         // push "failed" to the fail result array
         failResult.push("failed")
       } else {
@@ -100,7 +100,7 @@ describe("Email field check", () => {
     assert.equal(failResult.length, pattern.length)
   });
   it("@ cases. validation check = field is red ticked", async () => {
-    const pattern = ["a@","@gmail.com"]
+    const pattern = ["a@","@gmail.com","a b c@gmail.com","abc.@gmail.com","abc..@gmail.com","abs@&%$#*+.com"]
     const failResult = []
     const passResult = []
     // debugger
