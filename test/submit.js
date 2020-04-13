@@ -24,6 +24,7 @@ describe("Submit button check", () => {
   it("pass cases. can navigate to the confirmation screen", async () => {
     await driver.get("https://revolgy-forms-case-study-master.staging.axiory.com/jp/registration/demo");
     await driver.manage().window().setRect(1440, 830)
+    //pass pattern
     const pattern = {
       firstname: "tak",
       lastname: "kim",
