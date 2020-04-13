@@ -25,10 +25,9 @@ describe("Platform field check", () => {
     const dropdown = await driver.findElement(By.id("platform"))
     await dropdown.findElement(By.xpath("//*[@id=\'platform\']/option[1]")).click()  //await dropdown.findElement(By.xpath("//option[. = 'MetaTrader4']")).click() for option[2]
     await driver.findElement(By.css(".button")).click()
-    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(7) .error-messages")).getText()
+    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(7) .error-messages")).getText() // By.xpath("//*[@id=\'platform\']/../../../div/div[1]")
+    assert(errorMessage == "Please select a valid option!")
     assert(errorMessage !== "");
-    // const element = await driver.wait(until.elementLocated(By.xpath("//*[@id=\'platform\']/../../../div[7]"),10000)).getAttribute("class") <--This xpath does not work.... why??? stops here with an error saying no match for this path.
-    // assert.equal(element, "atm-select-box-container valid");
   });
   it("pass cases. no error message expected", async () => {
     const pattern = ["option[2]","option[3]"]

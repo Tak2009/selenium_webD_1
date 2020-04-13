@@ -25,10 +25,12 @@ describe("Account Type field check", () => {
     const dropdown = await driver.findElement(By.id("accountType"))
     await dropdown.findElement(By.xpath("//*[@id=\'accountType\']/option[1]")).click()  //await dropdown.findElement(By.xpath("//option[. = 'Standard (STP)']")).click() for option[2]
     await driver.findElement(By.css(".button")).click()
-    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(8) .error-messages")).getText()
+    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(8) .error-messages")).getText() // By.xpath("//*[@id=\'accountType\']/../../../div/div[1]")
+    assert(errorMessage == "Please select a valid option!")
     assert(errorMessage !== "");
   });
   it("pass cases. no error message expected", async () => {
+    // pass case. these must pass
     const pattern = ["option[2]","option[3]"]
     const failResult = []
     const passResult = []
@@ -46,6 +48,7 @@ describe("Account Type field check", () => {
         failResult.push(pattern[i])
       }
     }
+    // as pass expected, passResult.length must be equal to the legth of pass pattern array
     assert.equal(passResult.length, pattern.length);
   });
 });

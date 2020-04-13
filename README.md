@@ -46,7 +46,5 @@ Debugger attached.
 
 Question:
 
-platform.js
-
 submit.js
 https://medium.com/@JonasJancarik/handling-those-unhandled-promise-rejections-when-using-javascript-async-await-and-ifee-5bac52a0b29f

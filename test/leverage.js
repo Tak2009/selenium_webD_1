@@ -25,7 +25,8 @@ describe("Leverage field check", () => {
     const dropdown = await driver.findElement(By.id("leverage"))
     await dropdown.findElement(By.xpath("//*[@id=\'leverage\']/option[1]")).click()  //await dropdown.findElement(By.xpath("//option[. = '1:1']")).click() for option[2]
     await driver.findElement(By.css(".button")).click()
-    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(9) .error-messages")).getText()
+    const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(9) .error-messages")).getText() // By.xpath("//*[@id=\'leverage\']/../../../div/div[1]")
+    assert(errorMessage == "ご希望のレバレッジをご選択下さい")
     assert(errorMessage !== "");
   });
   it("pass cases. no error message expected", async () => {
@@ -46,6 +47,7 @@ describe("Leverage field check", () => {
         failResult.push(pattern[i])
       }
     }
+    // as pass expected, passResult.length must be equal to the legth of pass pattern array
     assert.equal(passResult.length, pattern.length);
   });
 });

@@ -8,6 +8,7 @@
     "accountType-brk": "mocha --inspect-brk test/accountType.js --timeout 0",
     "currency": "mocha test/currency.js --timeout 0",
     "deposit": "mocha test/deposit.js --timeout 0",
+    "deposit-brk": "mocha --inspect-brk test/deposit.js --timeout 0",
     "email": "mocha test/email.js --timeout 0",
     "email-brk": "mocha --inspect-brk test/email.js --timeout 0",
     "familyName": "mocha test/familyName.js --timeout 0",

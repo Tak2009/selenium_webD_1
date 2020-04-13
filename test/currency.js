@@ -26,6 +26,7 @@ describe("Currency field check", () => {
     await dropdown.findElement(By.xpath("//*[@id=\'currency\']/option[1]")).click()  //await dropdown.findElement(By.xpath("//option[. = 'JPY']")).click() for option[2]
     await driver.findElement(By.css(".button")).click()
     const errorMessage = await driver.findElement(By.css(".atm-select-box-container:nth-child(10) .error-messages")).getText()
+    assert(errorMessage == "ご希望の通貨をご選択下さい")
     assert(errorMessage !== "");
   });
   it("pass cases. no error message expected", async () => {
@@ -46,6 +47,7 @@ describe("Currency field check", () => {
         failResult.push(pattern[i])
       }
     }
+    // as pass expected, passResult.length must be equal to the legth of pass pattern array
     assert.equal(passResult.length, pattern.length);
   });
 });

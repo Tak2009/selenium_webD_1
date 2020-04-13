@@ -24,11 +24,13 @@ describe("Deposit field check", () => {
   });
   it("invalid cases. error messages expected ", async () => {
     //fail pattern. these need to fail
-    const pattern = [0,999]
-    const failResult = []
+    const pattern = [0,999,789,21,98,1]
+    //here, using hash to store key:value
+    const failResult = {}
     const passResult = []
     
     for (let i = 0; i < pattern.length; i++){
+      // debugger
       await driver.findElement(By.id("deposit")).clear()
       await driver.findElement(By.id("deposit")).sendKeys(pattern[i])
       await driver.findElement(By.id("currency")).click()
@@ -36,20 +38,21 @@ describe("Deposit field check", () => {
       // if there is no error message
       if (validFlag !== ""){
         // push succesfully fail case to the fail result array
-        failResult.push(pattern[i])
+        failResult[pattern[i]] = validFlag
       } else {
         passResult.push(pattern[i])
       }
     }
-    // as fail expected, failResult.length must be equal to the legth of fail pattern array
-    assert.equal(failResult.length, pattern.length);
+    // as fail expected, failResult key array length must be equal to the legth of fail pattern array
+    assert.equal(Object.keys(failResult).length, pattern.length);
     
   });
   it("pass cases. no error message expected", async () => {
     //pass pattern. these need to pass
-    const pattern = [1000,2001]
+    const pattern = [1000,2001,3090,5000]
+    //here, using hash to store key:value
     const failResult = []
-    const passResult = []
+    const passResult = {}
     
     for (let i = 0; i < pattern.length; i++){
       // debugger
@@ -60,13 +63,13 @@ describe("Deposit field check", () => {
       // if there is no error message
       if (validFlag == ""){
         // push pass case to the pass result array
-        passResult.push(pattern[i])
+        passResult[pattern[i]] = validFlag
       } else {
         failResult.push(pattern[i])
       }
     }
-    // as pass expected, passResult.length must be equal to the legth of pass pattern array
-    assert.equal(passResult.length, pattern.length);
+    // as pass expected, passResult key array length must be equal to the legth of pass pattern array
+    assert.equal(Object.keys(passResult).length, pattern.length);
   });
 });
 
