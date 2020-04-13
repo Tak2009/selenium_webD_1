@@ -2,3 +2,7 @@ selenium_web_1/
 
 node_modules/
 *.spec.js
+test.js
+index.html
+index.js
+

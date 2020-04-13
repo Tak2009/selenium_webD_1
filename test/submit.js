@@ -61,7 +61,7 @@ describe("Submit button check", () => {
     // const currentUrl = await driver.getCurrentUrl();
     // assert.equal(currentUrl,"https://www.axiory.com/jp/registration/demo?lng=ja&step=completed-mt4")
 
-  // this is not working.... I am trying to "sleep" the assert until the button click finishes navigating to the confirmation page 
+  /////// this is not working.... I am trying to "sleep" the assert check until the button click action finishes navigating to the confirmation page.\\\\\\\  
     sleep(7000)
     .then(() => {
     const currentUrl = driver.getCurrentUrl();
