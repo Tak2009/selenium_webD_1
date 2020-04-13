@@ -7,6 +7,7 @@
     "accountType": "mocha test/accountType.js --timeout 0",
     "accountType-brk": "mocha --inspect-brk test/accountType.js --timeout 0",
     "currency": "mocha test/currency.js --timeout 0",
+    "deposit": "mocha test/deposit.js --timeout 0",
     "email": "mocha test/email.js --timeout 0",
     "email-brk": "mocha --inspect-brk test/email.js --timeout 0",
     "familyName": "mocha test/familyName.js --timeout 0",
@@ -20,7 +21,9 @@
     "phone-brk": "mocha --inspect-brk test/phone.js --timeout 0",
     "platform": "mocha test/platform.js --timeout 0",
     "platform-brk": "mocha --inspect-brk test/platform.js --timeout 0",
-    "test": "mocha test/test.js --timeout 0"
+    "test": "mocha test/test.js --timeout 0",
+    "submit": "mocha test/submit.js --timeout 0",
+    "submit-brk": "mocha --inspect-brk test/submit.js --timeout 0"
   },
   "author": "",
   "license": "ISC",
