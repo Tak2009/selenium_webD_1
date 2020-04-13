@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "accountType": "mocha test/accountType.js --timeout 0",
+    "accountType-brk": "mocha --inspect-brk test/accountType.js --timeout 0",
+    "currency": "mocha test/currency.js --timeout 0",
     "email": "mocha test/email.js --timeout 0",
     "email-brk": "mocha --inspect-brk test/email.js --timeout 0",
     "familyName": "mocha test/familyName.js --timeout 0",
@@ -12,6 +14,8 @@
     "firstName": "mocha test/firstName.js --timeout 0",
     "iAgreeDemo": "mocha test/iAgreeDemo.js --timeout 0",
     "iAgreeDemo-brk": "mocha --inspect-brk test/iAgreeDemo.js --timeout 0",
+    "leverage": "mocha test/leverage.js --timeout 0",
+    "leverage-brk": "mocha --inspect-brk test/leverage.js --timeout 0",
     "phone": "mocha test/phone.js --timeout 0",
     "phone-brk": "mocha --inspect-brk test/phone.js --timeout 0",
     "platform": "mocha test/platform.js --timeout 0",

@@ -36,15 +36,16 @@ describe("Platform field check", () => {
     const passResult = []
     const dropdown = await driver.findElement(By.id("platform"))
     for (let i = 0; i < pattern.length; i++){
+      debugger
       await dropdown.findElement(By.xpath(`//*[@id=\'platform\']/${pattern[i]}`)).click() 
       await driver.findElement(By.css(".button")).click()
       let validFlag = await driver.findElement(By.css(".atm-select-box-container:nth-child(7) .error-messages")).getText()
         // if there is no error message
       if (validFlag == ""){
         // push "pass" to the pass result array
-        passResult.push("pass")
+        passResult.push(pattern[i])
       } else {
-        failResult.push("fail")
+        failResult.push(pattern[i])
       }
     }
     assert.equal(passResult.length, pattern.length);
